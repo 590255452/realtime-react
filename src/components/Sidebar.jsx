@@ -29,7 +29,7 @@ const Sidebar = () => {
                 </label>
             </div>
             <div className="overflow-y-auto">
-                {filteredUsers.map(user => (
+                {filteredUsers?.map?.(user => (
                     <button
                         key={user._id}
                         className={`flex justify-center items-center lg:justify-start w-full p-3 gap-4 hover:bg-base-300 transition-colors 

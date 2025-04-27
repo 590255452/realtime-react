@@ -2,10 +2,9 @@ import { create } from "zustand";
 import { axiosInstanace } from "../lib/axios";
 import toast from "react-hot-toast";
 import { io } from "socket.io-client";
-
 const BASE_URL = import.meta.env.MODE === "development" ? "http://localhost:5001" : "/";
 
-// 返回一个对象，当前认证用户 是否正在注册 是否正在登录 是否正在更新用户资料 是否正在检查认证 检查认证
+// 返回一个对象，当前认证用户 是否正在注册 是否正在登录 是否正在更新用户资料 是否正在检查认证 检查认证 是否第一次登录
 export const useAuthStore = create((set, get) => ({
     authUser: null,
     isSignUp: false,
@@ -14,16 +13,19 @@ export const useAuthStore = create((set, get) => ({
     isCheckingAuth: true,
     onlineUsers: [],
     socket: null,
+    hasTriedAuthCheck: false,
     checkAuth: async () => {
         try {
             const res = await axiosInstanace.get("/auth/check");
             set({ authUser: res.data });
             get().connectSocket();
         } catch (error) {
-            toast.error(error.response.data.message);
+            if (get().hasTriedAuthCheck) {
+                toast.error(error.response.data.message);
+            }
             set({ authUser: null });
         } finally {
-            set({ isCheckingAuth: false });
+            set({ isCheckingAuth: false, hasTriedAuthCheck: true });
         }
     },
     signup: async data => {

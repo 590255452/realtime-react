@@ -43,18 +43,3 @@ export default [
         ]
     }
 ];
-
-// module.exports = {
-//     extends: [
-//         "eslint:recommended",
-//         "plugin:react/recommended",
-//         "plugin:react/jsx-runtime",
-//         "plugin:prettier/recommended", // 确保引入 Prettier 插件
-//         "@electron-toolkit/eslint-config-ts/recommended",
-//         "@electron-toolkit/eslint-config-prettier"
-//     ],
-//     rules: {
-//         "@typescript-eslint/explicit-function-return-type": "off",
-//         "@typescript-eslint/no-unused-vars": "off"
-//     }
-// };

@@ -18,7 +18,7 @@ const Navbar = () => {
                 <div className="flex items-center gap-6">
                     <Link to="/setting" className="flex items-center gap-2">
                         <Settings className="size-5" />
-                        <span className="hidden sm:inline">Settings</span>
+                        <span className="hidden sm:inline">Setting</span>
                     </Link>
                     {authUser && (
                         <>
